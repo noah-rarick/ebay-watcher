@@ -11,111 +11,30 @@
     {
       "max_price": 180,
       "include_shipping": true,
-      "category_id": "169291",
-      "keywords": "Coach Soho",
+      "category_id": "",
+      "keywords": "",
       "conditions": [],
-      "require_words": [
-        "coach",
-        "soho",
-        "pink"
-      ],
-      "exclude_words": [
-        "strap only",
-        "dust bag",
-        "wallet",
-        "wristlet",
-        "parts",
-        "broken",
-        "for repair",
-        "replica",
-        "inspired",
-        "hobo",
-        "satchel",
-        "tote",
-        "crossbody",
-        "clutch",
-        "pouch",
-        "hampton",
-        "bleecker",
-        "backpack",
-        "op art",
-        "optical",
-        "messenger",
-        "crescent",
-        "convertible",
-        "pocket"
-      ],
+      "require_words": [],
+      "exclude_words": [],
       "name": "Coach Soho pink",
       "image": "images/coach-soho-pink.jpg",
       "limit": 200,
-      "require_any_groups": [
-        [
-          "flap",
-          "buckle"
-        ],
-        [
-          "signature",
-          "jacquard",
-          "canvas",
-          "logo",
-          "micro c"
-        ]
-      ]
+      "require_any_groups": []
     },
     {
       "max_price": 180,
       "include_shipping": true,
-      "category_id": "169291",
-      "keywords": "Coach Soho",
+      "category_id": "",
+      "keywords": "",
       "conditions": [],
-      "require_words": [
-        "coach",
-        "soho",
-        "black"
-      ],
-      "exclude_words": [
-        "strap only",
-        "dust bag",
-        "wallet",
-        "wristlet",
-        "parts",
-        "broken",
-        "for repair",
-        "replica",
-        "inspired",
-        "hobo",
-        "satchel",
-        "tote",
-        "crossbody",
-        "clutch",
-        "pouch",
-        "hampton",
-        "bleecker",
-        "backpack",
-        "op art",
-        "optical",
-        "messenger",
-        "crescent",
-        "convertible",
-        "pocket"
-      ],
+      "require_words": [],
+      "exclude_words": [],
       "name": "Coach Soho black",
       "image": "images/coach-soho-black.jpg",
       "limit": 200,
-      "require_any_groups": [
-        [
-          "flap",
-          "buckle"
-        ],
-        [
-          "signature",
-          "jacquard",
-          "canvas",
-          "logo",
-          "micro c"
-        ]
-      ]
+      "require_any_groups": []
     }
   ],
-  "listed_within_hours": 24
+  "listed_within_hours": 24,
+  "max_rank": 30
 }

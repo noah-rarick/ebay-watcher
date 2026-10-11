@@ -94,7 +94,6 @@ def search_by_image(cfg, watch):
     currency = cfg.get("currency", "USD")
     filters = [
         "buyingOptions:{FIXED_PRICE}",
-        f"price:[..{watch['max_price']}]",
         f"priceCurrency:{currency}",
     ]
     if watch.get("conditions"):
@@ -231,10 +230,13 @@ def check_once(cfg, seen):
         seen_ids = set(seen.setdefault(name, []))
         first_run = name not in seen.get("_initialized", [])
 
-        for item in items:
+        max_rank = int(watch.get("max_rank", cfg.get("max_rank", 0)) or 0)
+        for rank, item in enumerate(items, 1):
             item_id = item.get("itemId")
             if not item_id or item_id in seen_ids:
                 continue
+            if max_rank and rank > max_rank and not first_run:
+                continue  # weaker visual match; not marked seen in case it ranks higher later
             seen_ids.add(item_id)
 
             total, price, ship = total_cost(item)

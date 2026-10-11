@@ -1,0 +1,61 @@
+{
+  "ebay_client_id": "",
+  "ebay_client_secret": "",
+  "marketplace": "EBAY_US",
+  "currency": "USD",
+  "delivery_country": "US",
+  "check_every_minutes": 5,
+  "alert_on_existing": false,
+  "ntfy_topic": "",
+  "watches": [
+    {
+      "max_price": 180,
+      "include_shipping": true,
+      "category_id": "169291",
+      "keywords": "Coach Soho",
+      "conditions": [],
+      "require_words": [
+        "coach"
+      ],
+      "exclude_words": [
+        "strap only",
+        "dust bag",
+        "wallet",
+        "wristlet",
+        "parts",
+        "broken",
+        "for repair",
+        "replica",
+        "inspired"
+      ],
+      "name": "Coach Soho pink",
+      "image": "images/coach-soho-pink.jpg",
+      "limit": 200
+    },
+    {
+      "max_price": 180,
+      "include_shipping": true,
+      "category_id": "169291",
+      "keywords": "Coach Soho",
+      "conditions": [],
+      "require_words": [
+        "coach"
+      ],
+      "exclude_words": [
+        "strap only",
+        "dust bag",
+        "wallet",
+        "wristlet",
+        "parts",
+        "broken",
+        "for repair",
+        "replica",
+        "inspired"
+      ],
+      "name": "Coach Soho black",
+      "image": "images/coach-soho-black.jpg",
+      "limit": 200
+    }
+  ],
+  "listed_within_hours": 24
+}

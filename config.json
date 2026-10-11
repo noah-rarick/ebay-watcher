@@ -15,7 +15,9 @@
       "keywords": "Coach Soho",
       "conditions": [],
       "require_words": [
-        "coach"
+        "coach",
+        "soho",
+        "pink"
       ],
       "exclude_words": [
         "strap only",
@@ -26,11 +28,39 @@
         "broken",
         "for repair",
         "replica",
-        "inspired"
+        "inspired",
+        "hobo",
+        "satchel",
+        "tote",
+        "crossbody",
+        "clutch",
+        "pouch",
+        "hampton",
+        "bleecker",
+        "backpack",
+        "op art",
+        "optical",
+        "messenger",
+        "crescent",
+        "convertible",
+        "pocket"
       ],
       "name": "Coach Soho pink",
       "image": "images/coach-soho-pink.jpg",
-      "limit": 200
+      "limit": 200,
+      "require_any_groups": [
+        [
+          "flap",
+          "buckle"
+        ],
+        [
+          "signature",
+          "jacquard",
+          "canvas",
+          "logo",
+          "micro c"
+        ]
+      ]
     },
     {
       "max_price": 180,
@@ -39,7 +69,9 @@
       "keywords": "Coach Soho",
       "conditions": [],
       "require_words": [
-        "coach"
+        "coach",
+        "soho",
+        "black"
       ],
       "exclude_words": [
         "strap only",
@@ -50,11 +82,39 @@
         "broken",
         "for repair",
         "replica",
-        "inspired"
+        "inspired",
+        "hobo",
+        "satchel",
+        "tote",
+        "crossbody",
+        "clutch",
+        "pouch",
+        "hampton",
+        "bleecker",
+        "backpack",
+        "op art",
+        "optical",
+        "messenger",
+        "crescent",
+        "convertible",
+        "pocket"
       ],
       "name": "Coach Soho black",
       "image": "images/coach-soho-black.jpg",
-      "limit": 200
+      "limit": 200,
+      "require_any_groups": [
+        [
+          "flap",
+          "buckle"
+        ],
+        [
+          "signature",
+          "jacquard",
+          "canvas",
+          "logo",
+          "micro c"
+        ]
+      ]
     }
   ],
   "listed_within_hours": 24

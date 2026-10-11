@@ -166,7 +166,13 @@ def title_ok(item, watch):
         if word.lower() in title:
             return False
     required = watch.get("require_words", [])
-    return all(w.lower() in title for w in required)
+    if not all(w.lower() in title for w in required):
+        return False
+    # Each group: the title must contain at least one word from that group.
+    for group in watch.get("require_any_groups", []):
+        if not any(w.lower() in title for w in group):
+            return False
+    return True
 
 
 # ---------- notifications ----------

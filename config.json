@@ -36,5 +36,6 @@
     }
   ],
   "listed_within_hours": 24,
-  "max_rank": 30
+  "max_rank": 30,
+  "allowed_users": []
 }

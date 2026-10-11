@@ -4,9 +4,12 @@ on:
   schedule:
     - cron: "*/5 * * * *"   # every 5 minutes (GitHub may run it a bit later when busy)
   workflow_dispatch:         # lets you run it by hand from the Actions tab
+  issues:                    # react right away when someone signs up or edits their form
+    types: [opened, edited, reopened, labeled]
 
 permissions:
   contents: write            # needed to save seen.json back to the repo
+  issues: write              # read sign-up forms and reply on them
 
 concurrency:
   group: ebay-watcher
@@ -25,6 +28,7 @@ jobs:
           EBAY_CLIENT_ID: ${{ secrets.EBAY_CLIENT_ID }}
           EBAY_CLIENT_SECRET: ${{ secrets.EBAY_CLIENT_SECRET }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Remember seen listings
         run: |

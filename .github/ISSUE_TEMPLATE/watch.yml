@@ -1,0 +1,49 @@
+name: 🔔 Watch for an item on eBay
+description: Get a phone alert when a new Buy It Now listing that looks like your photo appears at or under your price.
+title: "Watch: "
+labels: ["watch"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **How it works:** every few minutes we search eBay using your photo (like eBay's camera search). When a *new* Buy It Now listing among the closest matches is at or under your price (shipping included), you get a push notification.
+
+        ⚠️ Everything on this page is **public**. Don't include personal info.
+  - type: input
+    id: item
+    attributes:
+      label: What are you looking for?
+      description: A short name, used in your alerts.
+      placeholder: "Coach Soho pink buckle shoulder bag"
+    validations:
+      required: true
+  - type: textarea
+    id: photo
+    attributes:
+      label: Photo of the item
+      description: |
+        Drag **one** photo into this box. Best results: **cropped tight around the item**, plain background, no hands or screenshots icons. A product photo from an eBay listing works great.
+      placeholder: Drag and drop a photo here
+    validations:
+      required: true
+  - type: input
+    id: price
+    attributes:
+      label: Max price (USD, including shipping)
+      description: Numbers only.
+      placeholder: "180"
+    validations:
+      required: true
+  - type: input
+    id: topic
+    attributes:
+      label: Your ntfy topic
+      description: |
+        1. Install the free **ntfy** app (iPhone or Android). 2. Tap **+** and subscribe to a long random name you make up, e.g. `sam-ebay-x7k2q9`. 3. Paste that same name here. Letters, numbers, `-` and `_` only.
+      placeholder: "sam-ebay-x7k2q9"
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: |
+        After you submit, a bot will reply here to confirm it's watching (or tell you what to fix). **Close the issue to stop watching**, or edit it to change the photo or price.

@@ -1,2 +1,4 @@
 *.tmp
 .DS_Store
+.issue_images/
+__pycache__/

@@ -175,9 +175,9 @@ def title_ok(item, watch):
 
 # ---------- notifications ----------
 
-def notify(cfg, subject, message, link=None, image=None):
+def notify(cfg, subject, message, link=None, image=None, topic=None):
     sent = False
-    topic = cfg.get("ntfy_topic")
+    topic = topic or cfg.get("ntfy_topic")
     if topic:
         # Plain publish (same as `curl -d "msg" ntfy.sh/topic`), with extras as headers.
         def hdr(value):
@@ -198,7 +198,7 @@ def notify(cfg, subject, message, link=None, image=None):
         sent = True
 
     em = cfg.get("email")
-    if em and em.get("to"):
+    if em and em.get("to") and not cfg.get("_skip_email"):
         msg = EmailMessage()
         msg["Subject"] = subject
         msg["From"] = em["from"]
@@ -216,18 +216,19 @@ def notify(cfg, subject, message, link=None, image=None):
 
 # ---------- main loop ----------
 
-def check_once(cfg, seen):
+def check_once(cfg, seen, extra_watches=()):
     new_count = 0
-    for watch in cfg["watches"]:
+    for watch in list(cfg["watches"]) + list(extra_watches):
         name = watch.get("name", watch["image"])
+        key = watch.get("_key", name)
         try:
             items = search_by_image(cfg, watch)
         except Exception as e:  # keep other watches running
             log(f"[{name}] search failed: {e}")
             continue
 
-        seen_ids = set(seen.setdefault(name, []))
-        first_run = name not in seen.get("_initialized", [])
+        seen_ids = set(seen.setdefault(key, []))
+        first_run = key not in seen.get("_initialized", [])
 
         max_rank = int(watch.get("max_rank", cfg.get("max_rank", 0)) or 0)
         for rank, item in enumerate(items, 1):
@@ -254,15 +255,20 @@ def check_once(cfg, seen):
             ship_txt = "free ship" if ship == 0 else (f"+${ship:.2f} ship" if ship else "ship ?")
             subject = f"${price:.2f} ({ship_txt}) - {name}"
             body = f"{item.get('title', '')}\nCondition: {item.get('condition', '?')}\nTotal: ${total:.2f}"
-            notify(cfg, subject, body, link=item.get("itemWebUrl"),
-                   image=item.get("image", {}).get("imageUrl"))
+            try:
+                notify(dict(cfg, _skip_email=bool(watch.get("_topic"))), subject, body,
+                       link=item.get("itemWebUrl"), image=item.get("image", {}).get("imageUrl"),
+                       topic=watch.get("_topic"))
+            except Exception as e:  # one bad topic shouldn't stop the other watches
+                log(f"[{name}] notification failed: {e}")
+                continue
             log(f"[{name}] ALERT {subject} {item.get('itemWebUrl')}")
             new_count += 1
 
         # cap memory per watch
-        seen[name] = list(seen_ids)[-5000:]
+        seen[key] = list(seen_ids)[-5000:]
         if first_run:
-            seen.setdefault("_initialized", []).append(name)
+            seen.setdefault("_initialized", []).append(key)
             log(f"[{name}] baseline saved ({len(items)} current matches).")
     return new_count
 
@@ -294,7 +300,9 @@ def main():
     interval = max(1, int(cfg.get("check_every_minutes", 5))) * 60
 
     while True:
-        n = check_once(cfg, seen)
+        import issue_watches
+        extra = issue_watches.load(cfg, seen, log)
+        n = check_once(cfg, seen, extra)
         save_json(SEEN_PATH, seen)
         log(f"Check done, {n} new alert(s).")
         if not args.loop:

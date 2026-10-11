@@ -137,6 +137,9 @@ def load(cfg, seen, log):
         if not (dest.exists() and url_marker.exists() and url_marker.read_text() == img_url):
             if not download(img_url, dest, token):
                 log(f"[#{num}] could not download photo {img_url}")
+                comment_once(num, "photo-failed",
+                             "I couldn't download the photo. Please edit the issue and drag in a "
+                             "JPG or PNG photo (not a link to another site).")
                 continue
             url_marker.write_text(img_url)
 

@@ -100,10 +100,9 @@ def search_by_image(cfg, watch):
         filters.append("conditions:{" + "|".join(watch["conditions"]) + "}")
     if cfg.get("delivery_country"):
         filters.append(f"deliveryCountry:{cfg['delivery_country']}")
-    hours = recent_hours(cfg, watch)
-    if hours and not _date_filter_unsupported:
-        since = time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime(time.time() - hours * 3600))
-        filters.append(f"itemStartDate:[{since}]")
+    # No listing-date filter here: it skews eBay's image ranking. Listing age is
+    # checked on the results instead (see listed_within_hours).
+    hours = 0
 
     params = {"limit": str(watch.get("limit", 50)), "filter": ",".join(filters)}
     if watch.get("category_id"):

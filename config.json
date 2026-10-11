@@ -17,7 +17,7 @@
       "require_words": [],
       "exclude_words": [],
       "name": "Coach Soho pink",
-      "image": "images/coach-soho-pink.jpg",
+      "image": "images/coach-soho-pink-crop.jpg",
       "limit": 200,
       "require_any_groups": []
     },
@@ -30,7 +30,7 @@
       "require_words": [],
       "exclude_words": [],
       "name": "Coach Soho black",
-      "image": "images/coach-soho-black.jpg",
+      "image": "images/coach-soho-black-crop.jpg",
       "limit": 200,
       "require_any_groups": []
     }
